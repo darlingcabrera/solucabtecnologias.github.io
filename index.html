@@ -1,351 +1,317 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solucab</title>
-
-<header>
-  <div class="header-container">
-    <!-- Logo + nombre -->
-    <div class="logo-nombre">
-      <img src="imagenes/logo-solucab.png" alt="Logo Solucab" class="logo">
-      <h1>Solucab <span>Tecnologías</span></h1>
-    </div>
-    
-    <!-- Lema / descripción corta -->
-    <div class="slogan">
-      <p>Soporte Técnico y Soluciones Tecnológicas</p>
-    </div>
-  </div>
-</header>
-
-<style>
-header {
-  background: #1c1c1c;
-  padding: 10px 65px;
-  color: white;
-}
-
-.header-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo-nombre {
-  display: flex;
-  align-items: center;
-}
-
-.logo-nombre img.logo {
-  width: 85px; /* ajusta tamaño del logo */
-  height: auto;
-  margin-right: 15px;
-}
-
-.logo-nombre h1 {
-  font-size: 2em;
-  margin: 0;
-}
-
-.logo-nombre h1 span {
-  color: #25D366; /* color destacado */
-}
-
-.slogan p {
-  margin: 0;
-  font-size: 1.5em;
-  font-style: italic;
-  color: #ddd;
-}
-
-  /* Sección Quiénes Somos con fondo */
-  #quienes-somos {
-    background-image: url('imagenes/quienes-somos.jpg'); /* 👈 cambia por tu ruta */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 20px 10px;
-    text-align: center;
-    color: #fff;
-  }
-
-  #quienes-somos h2,
-  #quienes-somos p {
-    background-color: rgba(0,0,0,0.0);
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 8px;
-  }
-
-  /* Sección de servicios */
-  .services {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
-  }
-
-  .services h2 {
-    text-align: center;
-    font-size: 28px;
-    color: #0072ff;
-    margin-bottom: 30px;
-  }
-
-  .service-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-  }
-
-  .service-card {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.2s ease-in-out;
-  }
-
-  .service-card:hover {
-    transform: translateY(-5px);
-  }
-
-  .service-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 12px;
-  }
-
-  .service-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #1e1e1e;
-  }
-
-  .service-card p {
-    font-size: 15px;
-    color: #555;
-  }
-
-  /* Sección de contacto */
-  .contact {
-    background: #1e1e1e;
-    color: #fff;
-    padding: 40px 20px;
-    border-radius: 20px 20px 0 0;
-    margin-top: 50px;
-  }
-
-  .contact h2 {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #00c6ff;
-  }
-
-  .contact-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 1000px;
-    margin: 0 auto;
-    gap: 40px;
-  }
-
-  /* Formulario */
-  .contact-form {
-    flex: 1;
-    min-width: 300px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .contact-form input,
-  .contact-form textarea {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-  }
-
-  .contact-form button {
-    background: linear-gradient(90deg, #00c6ff, #0072ff);
-    color: #fff;
-    border: none;
-    padding: 15px 20px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-
-  .contact-form button:hover {
-    background: linear-gradient(90deg, #0072ff, #0056cc);
-  }
-
-  /* Información de contacto */
-  .contact-info {
-    flex: 1;
-    min-width: 250px;
-    padding: 20px;
-   
-    border-radius: 8px;
-  }
-
-  .contact-info p {
-    margin: 8px 0;
-    font-size: 16px;
-  }
-
-  .contact-info .social-icons {
-    margin-top: 15px;
-  }
-
-  .contact-info .social-icons a {
-    color: #00c6ff;
-    font-size: 28px;
-    margin-right: 15px;
-    transition: color 0.3s;
-  }
-
-  .contact-info .social-icons a:hover {
-    color: #ffffff;
-  }
-
-  /* Botón flotante WhatsApp */
-  .whatsapp-float {
-    position: fixed;
-    bottom: 30px;
-    right: 20px;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    background-color: #25D366;
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: background 0.3s, transform 0.2s;
-  }
-
-  .whatsapp-float:hover {
-    background-color: #1ebe5c;
-    transform: scale(1.1);
-  }
-
-  .whatsapp-float img {
-    width: 30px;
-    height: 30px;
-  }
-
-  /* Responsivo */
-  @media (max-width: 700px) {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solucab</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ====== ENCABEZADO ====== */
     header {
-      flex-direction: column;
+      background: #1c1c1c;
+      padding: 15px 40px;
+      color: white;
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .logo-nombre {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .logo-nombre img.logo {
+      width: 85px;
+      height: auto;
+    }
+    .logo-nombre h1 {
+      font-size: 2em;
+      margin: 0;
+    }
+    .logo-nombre h1 span {
+      color: #25D366;
+    }
+    .slogan p {
+      margin: 0;
+      font-size: 1.2em;
+      font-style: italic;
+      color: #ddd;
+      text-align: right;
+    }
+
+    /* ====== QUIÉNES SOMOS ====== */
+    #quienes-somos {
+      background-image: url('imagenes/quienes-somos.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 40px 20px;
       text-align: center;
+      color: #fff;
+    }
+    #quienes-somos h2 {
+      font-size: 28px;
+    }
+    #quienes-somos p {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.5em;
+    }
+
+    /* ====== SERVICIOS ====== */
+    .services {
+      max-width: 1200px;
+      margin: 40px auto;
       padding: 20px;
     }
-    .tagline {
-      margin-top: 10px;
+    .services h2 {
+      text-align: center;
+      font-size: 28px;
+      color: #0072ff;
+      margin-bottom: 30px;
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .service-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s ease-in-out;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+    .service-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+    .service-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #1e1e1e;
+    }
+    .service-card p {
+      font-size: 15px;
+      color: #555;
+    }
+
+    /* ====== CONTACTO ====== */
+    .contact {
+      background: #1e1e1e;
+      color: #fff;
+      padding: 40px 20px;
+      border-radius: 20px 20px 0 0;
+      margin-top: 50px;
+    }
+    .contact h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #00c6ff;
     }
     .contact-container {
-      flex-direction: column;
-      gap: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1000px;
+      margin: 0 auto;
+      gap: 40px;
     }
-  }
-</style>
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .contact-form button {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: #fff;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .contact-form button:hover {
+      background: linear-gradient(90deg, #0072ff, #0056cc);
+    }
+    .contact-info {
+      flex: 1;
+      min-width: 250px;
+      padding: 20px;
+    }
+    .contact-info p {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+    .contact-info .social-icons {
+      margin-top: 15px;
+    }
+    .contact-info .social-icons a {
+      color: #00c6ff;
+      font-size: 28px;
+      margin-right: 15px;
+      transition: color 0.3s;
+    }
+    .contact-info .social-icons a:hover {
+      color: #ffffff;
+    }
+
+    /* ====== BOTÓN FLOTANTE WHATSAPP ====== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background-color: #25D366;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: background 0.3s, transform 0.2s;
+    }
+    .whatsapp-float:hover {
+      background-color: #1ebe5c;
+      transform: scale(1.1);
+    }
+    .whatsapp-float img {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+      .slogan p {
+        text-align: center;
+        font-size: 1em;
+      }
+      .logo-nombre h1 {
+        font-size: 1.5em;
+      }
+      .logo-nombre img.logo {
+        width: 65px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-
-
-<!-- Quiénes Somos -->
-<section id="quienes-somos">
-  <h2>Quiénes Somos</h2>
-  <p>
-    En <strong>STcabrera</strong> ofrecemos soluciones tecnológicas integrales,
-    garantizando un servicio profesional en reparación, mantenimiento e instalación
-    de equipos y software. Nuestro compromiso es brindar calidad, confianza y
-    soporte técnico especializado para empresas y hogares.
-  </p>
-</section>
-
-<!-- Servicios -->
-<section class="services">
-  <h2>Nuestros Servicios</h2>
-  <div class="service-grid">
-    <div class="service-card">
-      <img src="imagenes/impresoras.jpg" alt="Reparación de impresoras">
-      <h3>Reparación de Impresoras</h3>
-      <p>Diagnóstico y reparación de impresoras de todas las marcas.</p>
-    </div>
-    <div class="service-card">
-      <img src="imagenes/computadoras.jpg" alt="Mantenimiento de computadoras">
-      <h3>Mantenimiento de Computadoras</h3>
-      <p>Limpieza, optimización y reparación de PCs y laptops.</p>
-    </div>
-    <div class="service-card">
-      <img src="imagenes/consolas.jpg" alt="Mantenimiento de consolas">
-      <h3>Mantenimiento de Consolas</h3>
-      <p>Reparación y actualización de consolas como PlayStation y Xbox.</p>
-    </div>
-    <div class="service-card">
-      <img src="imagenes/redes.jpg" alt="Instalación de redes">
-      <h3>Instalación de Redes</h3>
-      <p>Configuración de redes cableadas e inalámbricas para hogares y empresas.</p>
-    </div>
-    <div class="service-card">
-      <img src="imagenes/camaras.jpg" alt="Instalación de cámaras">
-      <h3>Instalación de Cámaras</h3>
-      <p>Implementación de sistemas de videovigilancia modernos y seguros.</p>
-    </div>
-    <div class="service-card">
-      <img src="imagenes/sistemas.jpg" alt="Sistemas Operativos">
-      <h3>Sistemas Operativos</h3>
-      <p>Instalación de Windows, macOS y Linux, según sus necesidades.</p>
-    </div>
-    <div class="service-card">
-      <img src="imagenes/programas.jpg" alt="Instalación de programas">
-      <h3>Instalación de Programas</h3>
-      <p>Office, lectores PDF, navegadores y más software esencial.</p>
-    </div>
-  </div>
-</section>
-
-<!-- Contacto -->
-<section class="contact">
-  <h2>Contáctanos</h2>
-
-<center>
-  <div class="contact-container">
-    <!-- Información de contacto -->
-    <div class="contact-info">
-      <p><i class="fas fa-map-marker-alt"></i> La ceiba, Honduras</p>
-      <p><i class="fas fa-phone"></i> +504 9761-0869</p>
-      <p><i class="fas fa-envelope"></i> solucab@gmail.com</p>
-
-      
-	<div class="social-icons">
-         <a href="https://www.facebook.com/profile.php?viewas=100000686899395&id=61578815223315"><i class="fab fa-facebook-square"></i></a>
-         <a href="https://wa.me/50497610869?text=Hola%20quiero%20más%20información" 
-         target="_blank" class="fab fa-whatsapp"></a>
-         <a href="#"><i class="fab fa-instagram"></i></a>
+  <!-- ====== HEADER ====== -->
+  <header>
+    <div class="header-container">
+      <div class="logo-nombre">
+        <img src="imagenes/logo-solucab.png" alt="Logo Solucab" class="logo">
+        <h1>Solucab <span>Tecnologías</span></h1>
       </div>
-</center>
+      <div class="slogan">
+        <p>Soporte Técnico y Soluciones Tecnológicas</p>
+      </div>
+    </div>
+  </header>
 
-<!-- Botón flotante WhatsApp -->
-<a href="https://wa.me/50497610869?text=Hola%20quiero%20más%20información" 
-   target="_blank" 
-   class="whatsapp-float">
-  <img src="imagenes/whatsapp.png" alt="WhatsApp">
-</a>
+  <!-- QUIÉNES SOMOS -->
+  <section id="quienes-somos">
+    <h2>Quiénes Somos</h2>
+    <p>
+      En <strong>Solucab Tecnologías</strong> ofrecemos soluciones tecnológicas integrales,
+      garantizando un servicio profesional en reparación, mantenimiento e instalación
+      de equipos y software. Nuestro compromiso es brindar calidad, confianza y
+      soporte técnico especializado para empresas y hogares.
+    </p>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="services">
+    <h2>Nuestros Servicios</h2>
+    <div class="service-grid">
+      <div class="service-card">
+        <img src="imagenes/impresoras.jpg" alt="Reparación de impresoras">
+        <h3>Reparación de Impresoras</h3>
+        <p>Diagnóstico y reparación de impresoras de todas las marcas.</p>
+      </div>
+      <div class="service-card">
+        <img src="imagenes/computadoras.jpg" alt="Mantenimiento de computadoras">
+        <h3>Mantenimiento de Computadoras</h3>
+        <p>Limpieza, optimización y reparación de PCs y laptops.</p>
+      </div>
+      <div class="service-card">
+        <img src="imagenes/consolas.jpg" alt="Mantenimiento de consolas">
+        <h3>Mantenimiento de Consolas</h3>
+        <p>Reparación y actualización de consolas como PlayStation y Xbox.</p>
+      </div>
+      <div class="service-card">
+        <img src="imagenes/redes.jpg" alt="Instalación de redes">
+        <h3>Instalación de Redes</h3>
+        <p>Configuración de redes cableadas e inalámbricas para hogares y empresas.</p>
+      </div>
+      <div class="service-card">
+        <img src="imagenes/camaras.jpg" alt="Instalación de cámaras">
+        <h3>Instalación de Cámaras</h3>
+        <p>Implementación de sistemas de videovigilancia modernos y seguros.</p>
+      </div>
+      <div class="service-card">
+        <img src="imagenes/sistemas.jpg" alt="Sistemas Operativos">
+        <h3>Sistemas Operativos</h3>
+        <p>Instalación de Windows, macOS y Linux, según sus necesidades.</p>
+      </div>
+      <div class="service-card">
+        <img src="imagenes/programas.jpg" alt="Instalación de programas">
+        <h3>Instalación de Programas</h3>
+        <p>Office, lectores PDF, navegadores y más software esencial.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact">
+    <h2>Contáctanos</h2>
+    <div class="contact-container">
+      <div class="contact-info">
+        <p><i class="fas fa-map-marker-alt"></i> La Ceiba, Honduras</p>
+        <p><i class="fas fa-phone"></i> +504 9761-0869</p>
+        <p><i class="fas fa-envelope"></i> solucab@gmail.com</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/profile.php?viewas=100000686899395&id=61578815223315"><i class="fab fa-facebook-square"></i></a>
+          <a href="https://wa.me/50497610869?text=Hola%20quiero%20más%20información"><i class="fab fa-whatsapp"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTÓN FLOTANTE WHATSAPP -->
+  <a href="https://wa.me/50497610869?text=Hola%20quiero%20más%20información" target="_blank" class="whatsapp-float">
+    <img src="imagenes/whatsapp.png" alt="WhatsApp">
+  </a>
 
 </body>
 </html>
