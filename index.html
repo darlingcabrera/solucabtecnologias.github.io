@@ -1,317 +1,345 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solucab</title>
+  <title>Solucab Tecnologías - Soporte Técnico y Soluciones</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome para Iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <!-- Estilos personalizados y configuración de Tailwind -->
   <style>
-    /* ====== ENCABEZADO ====== */
-    header {
-      background: #1c1c1c;
-      padding: 15px 40px;
-      color: white;
-    }
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    .logo-nombre {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .logo-nombre img.logo {
-      width: 85px;
-      height: auto;
-    }
-    .logo-nombre h1 {
-      font-size: 2em;
-      margin: 0;
-    }
-    .logo-nombre h1 span {
-      color: #25D366;
-    }
-    .slogan p {
-      margin: 0;
-      font-size: 1.2em;
-      font-style: italic;
-      color: #ddd;
-      text-align: right;
-    }
-
-    /* ====== QUIÉNES SOMOS ====== */
-    #quienes-somos {
-      background-image: url('imagenes/quienes-somos.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      padding: 40px 20px;
-      text-align: center;
-      color: #fff;
-    }
-    #quienes-somos h2 {
-      font-size: 28px;
-    }
-    #quienes-somos p {
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.5em;
-    }
-
-    /* ====== SERVICIOS ====== */
-    .services {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-    .services h2 {
-      text-align: center;
-      font-size: 28px;
-      color: #0072ff;
-      margin-bottom: 30px;
-    }
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-    }
-    .service-card {
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 15px;
-      text-align: center;
-      transition: transform 0.2s ease-in-out;
-    }
-    .service-card:hover {
-      transform: translateY(-5px);
-    }
-    .service-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 12px;
-    }
-    .service-card h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      color: #1e1e1e;
-    }
-    .service-card p {
-      font-size: 15px;
-      color: #555;
-    }
-
-    /* ====== CONTACTO ====== */
-    .contact {
-      background: #1e1e1e;
-      color: #fff;
-      padding: 40px 20px;
-      border-radius: 20px 20px 0 0;
-      margin-top: 50px;
-    }
-    .contact h2 {
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #00c6ff;
-    }
-    .contact-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      max-width: 1000px;
-      margin: 0 auto;
-      gap: 40px;
-    }
-    .contact-form {
-      flex: 1;
-      min-width: 300px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-    .contact-form button {
-      background: linear-gradient(90deg, #00c6ff, #0072ff);
-      color: #fff;
-      border: none;
-      padding: 15px 20px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .contact-form button:hover {
-      background: linear-gradient(90deg, #0072ff, #0056cc);
-    }
-    .contact-info {
-      flex: 1;
-      min-width: 250px;
-      padding: 20px;
-    }
-    .contact-info p {
-      margin: 8px 0;
-      font-size: 16px;
-    }
-    .contact-info .social-icons {
-      margin-top: 15px;
-    }
-    .contact-info .social-icons a {
-      color: #00c6ff;
-      font-size: 28px;
-      margin-right: 15px;
-      transition: color 0.3s;
-    }
-    .contact-info .social-icons a:hover {
-      color: #ffffff;
-    }
-
-    /* ====== BOTÓN FLOTANTE WHATSAPP ====== */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 30px;
-      right: 20px;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      background-color: #25D366;
-      border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: background 0.3s, transform 0.2s;
-    }
-    .whatsapp-float:hover {
-      background-color: #1ebe5c;
-      transform: scale(1.1);
-    }
-    .whatsapp-float img {
-      width: 30px;
-      height: 30px;
-    }
-
-    /* ====== RESPONSIVE ====== */
-    @media (max-width: 768px) {
-      .header-container {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
+    /* Configuración de tema para Tailwind */
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#25D366',
+            secondary: '#0072ff',
+            dark: '#1c1c1c',
+            light: '#f4f4f4',
+          }
+        }
       }
-      .slogan p {
-        text-align: center;
-        font-size: 1em;
-      }
-      .logo-nombre h1 {
-        font-size: 1.5em;
-      }
-      .logo-nombre img.logo {
-        width: 65px;
-      }
+    }
+
+    /* Animación para el carrusel */
+    .fade-in {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0.3; }
+      to { opacity: 1; }
     }
   </style>
 </head>
-<body>
+<body class="bg-light text-gray-800 font-sans">
 
-  <!-- ====== HEADER ====== -->
-  <header>
-    <div class="header-container">
-      <div class="logo-nombre">
-        <img src="imagenes/logo-solucab.png" alt="Logo Solucab" class="logo">
-        <h1>Solucab <span>Tecnologías</span></h1>
+  <!-- ====== ENCABEZADO ====== -->
+  <header class="bg-dark shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <!-- Ruta local para el logo -->
+        <img src="imagenes/logo.png" alt="Logo Solucab" class="h-12 w-12 rounded-full border-2 border-primary" onerror="this.onerror=null; this.src='https://placehold.co/80x80/1c1c1c/25D366?text=ST';">
+        <div>
+          <h1 class="text-2xl font-bold text-blue">Solucab</h1>
+          <p class="text-sm text-primary -mt-1">Tecnologías</p>
+        </div>
       </div>
-      <div class="slogan">
-        <p>Soporte Técnico y Soluciones Tecnológicas</p>
-      </div>
+      <nav class="hidden md:flex items-center space-x-6">
+        <a href="#servicios" class="text-gray-300 hover:text-primary transition duration-300">Servicios</a>
+        <a href="#trabajos" class="text-gray-300 hover:text-primary transition duration-300">Galería</a>
+        <a href="#contacto" class="text-gray-300 hover:text-primary transition duration-300">Contacto</a>
+      </nav>
+      <!-- Menú para móvil -->
+      <button id="mobile-menu-button" class="md:hidden text-white text-2xl">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <!-- Menú desplegable para móvil -->
+    <div id="mobile-menu" class="hidden md:hidden bg-dark p-4">
+        <a href="#servicios" class="block text-gray-300 hover:text-primary py-2">Servicios</a>
+        <a href="#trabajos" class="block text-gray-300 hover:text-primary py-2">Galería</a>
+        <a href="#contacto" class="block text-gray-300 hover:text-primary py-2">Contacto</a>
     </div>
   </header>
 
-  <!-- QUIÉNES SOMOS -->
-  <section id="quienes-somos">
-    <h2>Quiénes Somos</h2>
-    <p>
-      En <strong>Solucab Tecnologías</strong> ofrecemos soluciones tecnológicas integrales,
-      garantizando un servicio profesional en reparación, mantenimiento e instalación
-      de equipos y software. Nuestro compromiso es brindar calidad, confianza y
-      soporte técnico especializado para empresas y hogares.
-    </p>
-  </section>
+  <main>
+    <!-- ====== SECCIÓN HERO CON CARRUSEL DE IMÁGENES ====== -->
+    <section id="hero" class="relative h-96 text-white overflow-hidden">
+      <!-- Contenedor de las imágenes del carrusel -->
+      <div id="slider-container" class="absolute top-0 left-0 w-full h-full">
+         <img src="imagenes/hero-tecnico.jpg" class="slider-image w-full h-full object-cover" alt="Técnico trabajando en una laptop">
+         <img src="imagenes/hero-redes.jpg" class="slider-image w-full h-full object-cover hidden" alt="Instalación de redes">
+         <img src="imagenes/hero-software.jpg" class="slider-image w-full h-full object-cover hidden" alt="Desarrollo de software">
+      </div>
+      <!-- Capa oscura para mejorar legibilidad del texto -->
+      <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-60"></div>
+      <!-- Contenido de la sección -->
+      <div class="relative z-10 flex flex-col justify-center items-center h-full text-center p-4">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">Soluciones Tecnológicas a tu Alcance</h2>
+        <p class="text-lg md:text-xl max-w-2xl drop-shadow-lg">Soporte técnico profesional para empresas y hogares. Calidad y confianza garantizadas.</p>
+        <a href="#contacto" class="mt-8 bg-primary hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 text-lg">Contáctanos ahora</a>
+      </div>
+    </section>
 
-  <!-- SERVICIOS -->
-  <section class="services">
-    <h2>Nuestros Servicios</h2>
-    <div class="service-grid">
-      <div class="service-card">
-        <img src="imagenes/impresoras.jpg" alt="Reparación de impresoras">
-        <h3>Reparación de Impresoras</h3>
-        <p>Diagnóstico y reparación de impresoras de todas las marcas.</p>
-      </div>
-      <div class="service-card">
-        <img src="imagenes/computadoras.jpg" alt="Mantenimiento de computadoras">
-        <h3>Mantenimiento de Computadoras</h3>
-        <p>Limpieza, optimización y reparación de PCs y laptops.</p>
-      </div>
-      <div class="service-card">
-        <img src="imagenes/consolas.jpg" alt="Mantenimiento de consolas">
-        <h3>Mantenimiento de Consolas</h3>
-        <p>Reparación y actualización de consolas como PlayStation y Xbox.</p>
-      </div>
-      <div class="service-card">
-        <img src="imagenes/redes.jpg" alt="Instalación de redes">
-        <h3>Instalación de Redes</h3>
-        <p>Configuración de redes cableadas e inalámbricas para hogares y empresas.</p>
-      </div>
-      <div class="service-card">
-        <img src="imagenes/camaras.jpg" alt="Instalación de cámaras">
-        <h3>Instalación de Cámaras</h3>
-        <p>Implementación de sistemas de videovigilancia modernos y seguros.</p>
-      </div>
-      <div class="service-card">
-        <img src="imagenes/sistemas.jpg" alt="Sistemas Operativos">
-        <h3>Sistemas Operativos</h3>
-        <p>Instalación de Windows, macOS y Linux, según sus necesidades.</p>
-      </div>
-      <div class="service-card">
-        <img src="imagenes/programas.jpg" alt="Instalación de programas">
-        <h3>Instalación de Programas</h3>
-        <p>Office, lectores PDF, navegadores y más software esencial.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section class="contact">
-    <h2>Contáctanos</h2>
-    <div class="contact-container">
-      <div class="contact-info">
-        <p><i class="fas fa-map-marker-alt"></i> La Ceiba, Honduras</p>
-        <p><i class="fas fa-phone"></i> +504 9761-0869</p>
-        <p><i class="fas fa-envelope"></i> solucab@gmail.com</p>
-        <div class="social-icons">
-          <a href="https://www.facebook.com/profile.php?viewas=100000686899395&id=61578815223315"><i class="fab fa-facebook-square"></i></a>
-          <a href="https://wa.me/50497610869?text=Hola%20quiero%20más%20información"><i class="fab fa-whatsapp"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
+    <!-- ====== SECCIÓN SERVICIOS ====== -->
+    <section id="servicios" class="py-16 bg-white">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-2">Nuestros Servicios</h2>
+        <p class="text-gray-600 mb-12 max-w-2xl mx-auto">Ofrecemos una gama completa de servicios tecnológicos. Haz clic en cada uno para ver más detalles.</p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Tarjeta de Servicio -->
+          <a href="#detalle-impresoras" class="service-card group">
+            <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
+              <i class="fas fa-print text-4xl text-primary group-hover:text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Reparación de Impresoras</h3>
+            <p class="text-gray-600">Solución a problemas de impresión, atascos y más.</p>
+          </a>
+          <!-- Tarjeta de Servicio -->
+          <a href="#detalle-computadoras" class="service-card group">
+            <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
+              <i class="fas fa-laptop text-4xl text-primary group-hover:text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Mantenimiento de PCs</h3>
+            <p class="text-gray-600">Optimización, limpieza y reparación de hardware.</p>
+          </a>
+          <!-- Tarjeta de Servicio -->
+          <a href="#detalle-redes" class="service-card group">
+            <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
+              <i class="fas fa-wifi text-4xl text-primary group-hover:text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Instalación de Redes</h3>
+            <p class="text-gray-600">Configuración de redes WiFi y cableadas seguras.</p>
+          </a>
+          <!-- Tarjeta de Servicio -->
+          <a href="#detalle-camaras" class="service-card group">
+            <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
+              <i class="fas fa-video text-4xl text-primary group-hover:text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Cámaras de Seguridad</h3>
+            <p class="text-gray-600">Instalación y configuración de sistemas de vigilancia.</p>
+          </a>
+          <!-- Tarjeta de Servicio NUEVA -->
+          <a href="#detalle-consolas" class="service-card group">
+            <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
+              <i class="fas fa-gamepad text-4xl text-primary group-hover:text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Mantenimiento de Consolas</h3>
+            <p class="text-gray-600">PS4, PS5, Xbox, Nintendo Switch y más.</p>
+          </a>
+          <!-- Tarjeta de Servicio NUEVA -->
+          <a href="#detalle-sistemas" class="service-card group">
+            <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
+              <i class="fas fa-cogs text-4xl text-primary group-hover:text-white"></i>
+            </div>
+            <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Sistemas Operativos</h3>
+            <p class="text-gray-600">Windows, macOS, Linux, Android e iOS.</p>
+          </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+    
+    <!-- ====== SECCIONES DE DETALLE DE SERVICIOS (SUB-PÁGINAS SIMULADAS) ====== -->
+    <div class="py-16 bg-light">
+      <div class="container mx-auto px-6 space-y-20">
+        <!-- Detalle Impresoras -->
+        <section id="detalle-impresoras" class="flex flex-col md:flex-row items-center gap-12">
+          <div class="md:w-1/2">
+            <h3 class="text-3xl font-bold mb-4">Reparación Profesional de Impresoras</h3>
+            <p class="text-gray-700 leading-relaxed mb-4">Diagnosticamos y reparamos todo tipo de impresoras: láser, de tinta, multifuncionales y más. Solucionamos problemas comunes como atascos de papel, mala calidad de impresión, errores de conexión y fallos de hardware. Usamos repuestos de alta calidad para garantizar una reparación duradera.</p>
+            <a href="#contacto" class="text-secondary font-bold hover:underline">Solicitar Diagnóstico &rarr;</a>
+          </div>
+          <div class="md:w-1/2">
+            <img src="imagenes/servicio-impresoras.jpg" alt="Técnico reparando una impresora" class="rounded-lg shadow-xl w-full h-auto">
+          </div>
+        </section>
 
-  <!-- BOTÓN FLOTANTE WHATSAPP -->
-  <a href="https://wa.me/50497610869?text=Hola%20quiero%20más%20información" target="_blank" class="whatsapp-float">
-    <img src="imagenes/whatsapp.png" alt="WhatsApp">
+        <!-- Detalle Computadoras -->
+        <section id="detalle-computadoras" class="flex flex-col md:flex-row-reverse items-center gap-12">
+          <div class="md:w-1/2">
+            <h3 class="text-3xl font-bold mb-4">Mantenimiento Preventivo y Correctivo de PCs</h3>
+            <p class="text-gray-700 leading-relaxed mb-4">Mantén tu equipo en óptimas condiciones. Ofrecemos limpieza interna de componentes para evitar sobrecalentamiento, optimización de sistema operativo para mayor velocidad, eliminación de virus y malware, y reparación o cambio de componentes como discos duros, memoria RAM y fuentes de poder.</p>
+            <a href="#contacto" class="text-secondary font-bold hover:underline">Optimiza tu PC &rarr;</a>
+          </div>
+          <div class="md:w-1/2">
+            <img src="imagenes/servicio-computadoras.jpg" alt="Interior de una computadora con componentes" class="rounded-lg shadow-xl w-full h-auto">
+          </div>
+        </section>
+        
+        <!-- Detalle Redes -->
+        <section id="detalle-redes" class="flex flex-col md:flex-row items-center gap-12">
+          <div class="md:w-1/2">
+            <h3 class="text-3xl font-bold mb-4">Instalación y Configuración de Redes</h3>
+            <p class="text-gray-700 leading-relaxed mb-4">Diseñamos e implementamos soluciones de red para tu hogar o negocio. Configuramos redes WiFi de alta velocidad con cobertura total, redes cableadas para máxima estabilidad y seguridad, y garantizamos que todos tus dispositivos estén conectados de forma segura y eficiente.</p>
+            <a href="#contacto" class="text-secondary font-bold hover:underline">Mejora tu Conexión &rarr;</a>
+          </div>
+          <div class="md:w-1/2">
+            <img src="imagenes/servicio-redes.jpg" alt="Servidores y equipo de red en un rack" class="rounded-lg shadow-xl w-full h-auto">
+          </div>
+        </section>
+        
+        <!-- Detalle Cámaras -->
+        <section id="detalle-camaras" class="flex flex-col md:flex-row-reverse items-center gap-12">
+          <div class="md:w-1/2">
+            <h3 class="text-3xl font-bold mb-4">Sistemas de Videovigilancia (CCTV)</h3>
+            <p class="text-gray-700 leading-relaxed mb-4">Protege lo que más importa con nuestros sistemas de cámaras de seguridad. Realizamos la instalación estratégica de cámaras HD y 4K, configuramos el sistema de grabación (DVR/NVR) y te damos acceso para que puedas monitorear tu propiedad desde tu celular en tiempo real, desde cualquier lugar del mundo.</p>
+            <a href="#contacto" class="text-secondary font-bold hover:underline">Cotizar Sistema de Seguridad &rarr;</a>
+          </div>
+          <div class="md:w-1/2">
+            <img src="imagenes/servicio-camaras.jpg" alt="Cámara de seguridad instalada en una pared exterior" class="rounded-lg shadow-xl w-full h-auto">
+          </div>
+        </section>
+
+        <!-- Detalle Consolas NUEVO -->
+        <section id="detalle-consolas" class="flex flex-col md:flex-row items-center gap-12">
+          <div class="md:w-1/2">
+            <h3 class="text-3xl font-bold mb-4">Mantenimiento de Consolas de Videojuegos</h3>
+            <p class="text-gray-700 leading-relaxed mb-4">¡Que la diversión no se detenga! Damos servicio a tus consolas favoritas: PlayStation (PS4, PS5), Xbox (One, Series X/S) y Nintendo Switch. Realizamos limpieza interna para evitar sobrecalentamiento, reparación de puertos HDMI, cambio de pasta térmica y solución a fallos de software o lectura de discos.</p>
+            <a href="#contacto" class="text-secondary font-bold hover:underline">Repara tu Consola &rarr;</a>
+          </div>
+          <div class="md:w-1/2">
+            <img src="imagenes/servicio-consolas.jpg" alt="Varias consolas de videojuegos como PlayStation, Xbox y Nintendo Switch" class="rounded-lg shadow-xl w-full h-auto">
+          </div>
+        </section>
+
+        <!-- Detalle Sistemas Operativos NUEVO -->
+        <section id="detalle-sistemas" class="flex flex-col md:flex-row-reverse items-center gap-12">
+          <div class="md:w-1/2">
+            <h3 class="text-3xl font-bold mb-4">Instalación de Sistemas Operativos</h3>
+            <p class="text-gray-700 leading-relaxed mb-4">Instalamos y configuramos desde cero el sistema operativo que necesites. Para computadoras: Windows 10/11, macOS y cualquier distribución de Linux. Para móviles: flasheo y actualización de Android e iOS. Garantizamos una instalación limpia, con todos los drivers y software esencial para que empieces a trabajar o jugar de inmediato.</p>
+            <a href="#contacto" class="text-secondary font-bold hover:underline">Actualiza tu Sistema &rarr;</a>
+          </div>
+          <div class="md:w-1/2">
+            <img src="imagenes/servicio-sistemas.jpg" alt="Logos de Windows, macOS, Linux, Android e iOS" class="rounded-lg shadow-xl w-full h-auto">
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- ====== SECCIÓN GALERÍA DE TRABAJOS REALIZADOS ====== -->
+    <section id="trabajos" class="py-16 bg-white">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-2">Nuestros Trabajos</h2>
+        <p class="text-gray-600 mb-12 max-w-2xl mx-auto">Un vistazo a la calidad y profesionalismo que entregamos en cada proyecto.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="group relative overflow-hidden rounded-lg shadow-lg">
+            <img src="imagenes/galeria-oficina.jpg" alt="Instalación de oficina" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
+              <p class="text-white font-bold text-lg">Instalación de Red en Oficina</p>
+            </div>
+          </div>
+          <div class="group relative overflow-hidden rounded-lg shadow-lg">
+            <img src="imagenes/galeria-componente.jpg" alt="Reparación de placa base" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
+              <p class="text-white font-bold text-lg">Reparación a Nivel Componente</p>
+            </div>
+          </div>
+          <div class="group relative overflow-hidden rounded-lg shadow-lg">
+            <img src="imagenes/galeria-cableado.jpg" alt="Cableado estructurado" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
+              <p class="text-white font-bold text-lg">Organización de Cableado</p>
+            </div>
+          </div>
+          <div class="group relative overflow-hidden rounded-lg shadow-lg">
+            <img src="imagenes/galeria-cctv.jpg" alt="Instalación de CCTV" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
+              <p class="text-white font-bold text-lg">Sistema de Videovigilancia</p>
+            </div>
+          </div>
+          <div class="group relative overflow-hidden rounded-lg shadow-lg">
+            <img src="imagenes/galeria-soporte.jpg" alt="Soporte a múltiples dispositivos" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
+              <p class="text-white font-bold text-lg">Soporte Remoto y Presencial</p>
+            </div>
+          </div>
+           <div class="group relative overflow-hidden rounded-lg shadow-lg">
+            <img src="imagenes/galeria-software.jpg" alt="Instalación de Software" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
+              <p class="text-white font-bold text-lg">Instalación de Software</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== CONTACTO ====== -->
+    <section id="contacto" class="bg-dark text-white py-16">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-4">¿Listo para Empezar?</h2>
+        <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Ponte en contacto con nosotros. Estamos listos para ayudarte con cualquier desafío tecnológico.</p>
+        <div class="flex flex-wrap justify-center items-center gap-8">
+          <a href="tel:+50497610869" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-lg transition duration-300">
+            <p class="text-lg"><i class="fas fa-phone mr-2 text-primary"></i> +504 9761-0869</p>
+          </a>
+          <a href="mailto:solucab@gmail.com" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-lg transition duration-300">
+            <p class="text-lg"><i class="fas fa-envelope mr-2 text-primary"></i> solucab@gmail.com</p>
+          </a>
+          <div class="bg-gray-700 p-4 rounded-lg">
+            <p class="text-lg"><i class="fas fa-map-marker-alt mr-2 text-primary"></i> La Ceiba, Honduras</p>
+          </div>
+        </div>
+        <div class="mt-10">
+          <p class="text-gray-400 mb-4">Síguenos en nuestras redes sociales</p>
+          <div class="flex justify-center space-x-6">
+            <a href="https://www.facebook.com/solucabtecnologias" target="_blank" class="text-3xl text-gray-400 hover:text-primary transition duration-300"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://wa.me/50497610869?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="text-3xl text-gray-400 hover:text-primary transition duration-300"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/solucab_tecnologias/" class="text-3xl text-gray-400 hover:text-primary transition duration-300"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- ====== FOOTER ====== -->
+  <footer class="bg-black text-gray-500 text-center p-4">
+      <p>&copy; <span id="year"></span> Solucab Tecnologías. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- ====== BOTÓN FLOTANTE WHATSAPP ====== -->
+  <a href="https://wa.me/50497610869?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="fixed bottom-5 right-5 z-50 w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition duration-300">
+    <i class="fab fa-whatsapp text-green text-4xl"></i>
   </a>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      
+      // Lógica para el menú móvil
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Lógica para el carrusel de imágenes
+      const sliderImages = document.querySelectorAll('.slider-image');
+      let currentImageIndex = 0;
+
+      function showNextImage() {
+        if (sliderImages.length === 0) return;
+        sliderImages[currentImageIndex].classList.add('hidden');
+        sliderImages[currentImageIndex].classList.remove('fade-in');
+        
+        currentImageIndex = (currentImageIndex + 1) % sliderImages.length;
+        
+        sliderImages[currentImageIndex].classList.remove('hidden');
+        sliderImages[currentImageIndex].classList.add('fade-in');
+      }
+
+      setInterval(showNextImage, 5000); // Cambia la imagen cada 5 segundos
+      
+      // Actualizar año en el footer
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
 
 </body>
 </html>
+
