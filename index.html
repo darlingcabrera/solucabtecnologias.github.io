@@ -10,6 +10,9 @@
   
   <!-- Font Awesome para Iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Swiper.js CSS para el carrusel -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   
   <!-- Estilos personalizados y configuración de Tailwind -->
   <style>
@@ -27,7 +30,7 @@
       }
     }
 
-    /* Animación para el carrusel */
+    /* Animación para el carrusel del hero */
     .fade-in {
       animation: fadeIn 1.5s ease-in-out;
     }
@@ -35,6 +38,43 @@
     @keyframes fadeIn {
       from { opacity: 0.3; }
       to { opacity: 1; }
+    }
+
+    /* Estilos para los carruseles DENTRO de cada tarjeta de trabajo */
+    .work-item-carousel {
+      position: relative;
+    }
+
+    .work-item-carousel .swiper-button-next,
+    .work-item-carousel .swiper-button-prev {
+      color: #ffffff !important;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0; /* Ocultos por defecto */
+      transition: opacity 0.3s ease;
+    }
+
+    /* Mostrar botones al pasar el mouse sobre la tarjeta */
+    .work-item-carousel:hover .swiper-button-next,
+    .work-item-carousel:hover .swiper-button-prev {
+      opacity: 1;
+    }
+
+    .work-item-carousel .swiper-button-next::after,
+    .work-item-carousel .swiper-button-prev::after {
+      font-size: 16px !important;
+      font-weight: bold;
+    }
+
+    .work-item-carousel .swiper-button-prev {
+      left: 12px;
+    }
+    .work-item-carousel .swiper-button-next {
+      right: 12px;
     }
   </style>
 </head>
@@ -45,27 +85,27 @@
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
       <div class="flex items-center gap-4">
         <!-- Ruta local para el logo -->
-        <img src="imagenes/logo.png" alt="Logo Solucab" class="h-12 w-12 rounded-full border-2 border-primary" onerror="this.onerror=null; this.src='https://placehold.co/80x80/1c1c1c/25D366?text=ST';">
+        <img src="imagenes/logo.png" alt="Logo Solucab" class="h-15 w-12 rounded-full border-2 border-primary" onerror="this.onerror=null; this.src='https://placehold.co/90x90/1c1c1c/25D366?text=ST';">
         <div>
-          <h1 class="text-2xl font-bold text-blue">Solucab</h1>
+          <h1 class="text-2xl font-bold text-green-600">Solucab</h1>
           <p class="text-sm text-primary -mt-1">Tecnologías</p>
         </div>
       </div>
       <nav class="hidden md:flex items-center space-x-6">
-        <a href="#servicios" class="text-gray-300 hover:text-primary transition duration-300">Servicios</a>
-        <a href="#trabajos" class="text-gray-300 hover:text-primary transition duration-300">Galería</a>
-        <a href="#contacto" class="text-gray-300 hover:text-primary transition duration-300">Contacto</a>
+        <a href="#servicios" class="text-gray-600 hover:text-primary transition duration-300">Servicios</a>
+        <a href="#trabajos" class="text-gray-600 hover:text-primary transition duration-300">Galería</a>
+        <a href="#contacto" class="text-gray-600 hover:text-primary transition duration-300">Contacto</a>
       </nav>
       <!-- Menú para móvil -->
-      <button id="mobile-menu-button" class="md:hidden text-white text-2xl">
+      <button id="mobile-menu-button" class="md:hidden text-black text-2xl">
         <i class="fas fa-bars"></i>
       </button>
     </div>
     <!-- Menú desplegable para móvil -->
     <div id="mobile-menu" class="hidden md:hidden bg-dark p-4">
-        <a href="#servicios" class="block text-gray-300 hover:text-primary py-2">Servicios</a>
-        <a href="#trabajos" class="block text-gray-300 hover:text-primary py-2">Galería</a>
-        <a href="#contacto" class="block text-gray-300 hover:text-primary py-2">Contacto</a>
+        <a href="#servicios" class="block text-gray-600 hover:text-primary py-2">Servicios</a>
+        <a href="#trabajos" class="block text-gray-600 hover:text-primary py-2">Galería</a>
+        <a href="#contacto" class="block text-gray-600 hover:text-primary py-2">Contacto</a>
     </div>
   </header>
 
@@ -77,6 +117,7 @@
          <img src="imagenes/hero-tecnico.jpg" class="slider-image w-full h-full object-cover" alt="Técnico trabajando en una laptop">
          <img src="imagenes/hero-redes.jpg" class="slider-image w-full h-full object-cover hidden" alt="Instalación de redes">
          <img src="imagenes/hero-software.jpg" class="slider-image w-full h-full object-cover hidden" alt="Desarrollo de software">
+	<img src="imagenes/hero-programas.jpg" class="slider-image w-full h-full object-cover hidden" alt="Instalación de Programas">
       </div>
       <!-- Capa oscura para mejorar legibilidad del texto -->
       <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-60"></div>
@@ -230,62 +271,118 @@
         <h2 class="text-3xl font-bold mb-2">Nuestros Trabajos</h2>
         <p class="text-gray-600 mb-12 max-w-2xl mx-auto">Un vistazo a la calidad y profesionalismo que entregamos en cada proyecto.</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="group relative overflow-hidden rounded-lg shadow-lg">
-            <img src="imagenes/galeria-oficina.jpg" alt="Instalación de oficina" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
-            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
-              <p class="text-white font-bold text-lg">Instalación de Red en Oficina</p>
+          
+          <!-- Trabajo 1 -->
+          <div class="work-item-carousel rounded-lg shadow-lg overflow-hidden">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="imagenes/galeria-oficina.jpg" alt="Instalación de oficina" class="w-full h-64 object-cover"></div>
+                  </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-40 flex items-end p-4 pointer-events-none">
+              <p class="text-red font-bold text-lg">Instalación de Red en Oficina</p>
             </div>
           </div>
-          <div class="group relative overflow-hidden rounded-lg shadow-lg">
-            <img src="imagenes/galeria-componente.jpg" alt="Reparación de placa base" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
-            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
+          
+          <!-- Trabajo 2 -->
+          <div class="work-item-carousel rounded-lg shadow-lg overflow-hidden">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="imagenes/galeria-componente.jpg" alt="Reparación de placa base" class="w-full h-64 object-cover"></div>
+                <div class="swiper-slide"><img src="imagenes/mantenimiento-laptop.jpg" alt="Reparación de placa base" class="w-full h-64 object-cover"></div>
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-50 flex items-end p-4 pointer-events-none">
               <p class="text-white font-bold text-lg">Reparación a Nivel Componente</p>
             </div>
           </div>
-          <div class="group relative overflow-hidden rounded-lg shadow-lg">
-            <img src="imagenes/galeria-cableado.jpg" alt="Cableado estructurado" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
-            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
+
+          <!-- Trabajo 3 -->
+          <div class="work-item-carousel rounded-lg shadow-lg overflow-hidden">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="imagenes/galeria-cableado.jpg" alt="Cableado estructurado" class="w-full h-64 object-cover"></div>
+                <div class="swiper-slide"><img src="https://placehold.co/600x400/eeeeee/1c1c1c?text=Cableado+2" alt="Cableado estructurado 2" class="w-full h-64 object-cover"></div>
+                <div class="swiper-slide"><img src="https://placehold.co/600x400/dddddd/1c1c1c?text=Cableado+3" alt="Cableado estructurado 3" class="w-full h-64 object-cover"></div>
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-40 flex items-end p-4 pointer-events-none">
               <p class="text-white font-bold text-lg">Organización de Cableado</p>
             </div>
           </div>
-          <div class="group relative overflow-hidden rounded-lg shadow-lg">
-            <img src="imagenes/galeria-cctv.jpg" alt="Instalación de CCTV" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
-            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
+
+          <!-- Trabajo 4 -->
+          <div class="work-item-carousel rounded-lg shadow-lg overflow-hidden">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="imagenes/galeria-cctv.jpg" alt="Instalación de CCTV" class="w-full h-64 object-cover"></div>
+                <div class="swiper-slide"><img src="https://placehold.co/600x400/eeeeee/1c1c1c?text=CCTV+2" alt="Instalación de CCTV 2" class="w-full h-64 object-cover"></div>
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-40 flex items-end p-4 pointer-events-none">
               <p class="text-white font-bold text-lg">Sistema de Videovigilancia</p>
             </div>
           </div>
-          <div class="group relative overflow-hidden rounded-lg shadow-lg">
-            <img src="imagenes/galeria-soporte.jpg" alt="Soporte a múltiples dispositivos" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
-            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
+
+          <!-- Trabajo 5 -->
+          <div class="work-item-carousel rounded-lg shadow-lg overflow-hidden">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="imagenes/galeria-soporte.jpg" alt="Soporte a múltiples dispositivos" class="w-full h-64 object-cover"></div>
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-40 flex items-end p-4 pointer-events-none">
               <p class="text-white font-bold text-lg">Soporte Remoto y Presencial</p>
             </div>
           </div>
-           <div class="group relative overflow-hidden rounded-lg shadow-lg">
-            <img src="imagenes/galeria-software.jpg" alt="Instalación de Software" class="w-full h-64 object-cover transform group-hover:scale-110 transition duration-500">
-            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end p-4">
+
+          <!-- Trabajo 6 -->
+           <div class="work-item-carousel rounded-lg shadow-lg overflow-hidden">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="imagenes/galeria-software.jpg" alt="Instalación de Software" class="w-full h-64 object-cover"></div>
+                <div class="swiper-slide"><img src="imagenes/falla-os.jpg" alt="Error de OS Windows" class="w-full h-64 object-cover"></div>
+		 <div class="swiper-slide"><img src="imagenes/hero-programas.jpg" alt="Error de OS Windows" class="w-full h-64 object-cover"></div>
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-40 flex items-end p-4 pointer-events-none">
               <p class="text-white font-bold text-lg">Instalación de Software</p>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
     <!-- ====== CONTACTO ====== -->
-    <section id="contacto" class="bg-dark text-white py-16">
+    <section id="contacto" class="bg-dark text-gray-300 py-16">
       <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold mb-4">¿Listo para Empezar?</h2>
-        <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Ponte en contacto con nosotros. Estamos listos para ayudarte con cualquier desafío tecnológico.</p>
+        <h2 class="text-3xl font-bold mb-4 text-black">¿Listo para Empezar?</h2>
+        <p class="text-gray-400 mb-8 max-w-2xl mx-auto">Ponte en contacto con nosotros. Estamos listos para ayudarte con cualquier desafío tecnológico.</p>
         <div class="flex flex-wrap justify-center items-center gap-8">
-          <a href="tel:+50497610869" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-lg transition duration-300">
+          <a href="tel:+50497610869" class="bg-gray-300 hover:bg-gray-600 text-black p-4 rounded-lg transition duration-300">
             <p class="text-lg"><i class="fas fa-phone mr-2 text-primary"></i> +504 9761-0869</p>
           </a>
-          <a href="mailto:solucabtecnologias@gmail.com" class="bg-gray-700 hover:bg-gray-600 p-4 rounded-lg transition duration-300">
-            <p class="text-lg"><i class="fas fa-envelope mr-2 text-primary"></i> solucabtecnologias</p>
+          <a href="mailto:solucab@gmail.com" class="bg-gray-300 hover:bg-gray-600 text-black p-4 rounded-lg transition duration-300">
+            <p class="text-lg"><i class="fas fa-envelope mr-2 text-primary"></i> solucabtecnologias@gmail.com</p>
           </a>
-          <div class="bg-gray-700 p-4 rounded-lg">
+          <div class="bg-gray-300 text-black p-4 rounded-lg">
             <p class="text-lg"><i class="fas fa-map-marker-alt mr-2 text-primary"></i> La Ceiba, Honduras</p>
           </div>
         </div>
+
         <div class="mt-10">
           <p class="text-gray-400 mb-4">Síguenos en nuestras redes sociales</p>
           <div class="flex justify-center space-x-6">
@@ -305,9 +402,12 @@
 
   <!-- ====== BOTÓN FLOTANTE WHATSAPP ====== -->
   <a href="https://wa.me/50497610869?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="fixed bottom-5 right-5 z-50 w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition duration-300">
-    <i class="fab fa-whatsapp text-green text-4xl"></i>
+    <i class="fab fa-whatsapp text-green-600 text-4xl"></i>
   </a>
   
+  <!-- Swiper.js JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       
@@ -318,7 +418,7 @@
         mobileMenu.classList.toggle('hidden');
       });
 
-      // Lógica para el carrusel de imágenes
+      // Lógica para el carrusel de imágenes del HERO
       const sliderImages = document.querySelectorAll('.slider-image');
       let currentImageIndex = 0;
 
@@ -337,6 +437,25 @@
       
       // Actualizar año en el footer
       document.getElementById('year').textContent = new Date().getFullYear();
+
+      // INICIALIZACIÓN DE CARRUSELES DENTRO DE CADA TARJETA DE TRABAJO
+      const workItemCarousels = document.querySelectorAll('.work-item-carousel');
+      
+      workItemCarousels.forEach(carouselElement => {
+        const swiperContainer = carouselElement.querySelector('.swiper-container');
+        const nextButton = carouselElement.querySelector('.swiper-button-next');
+        const prevButton = carouselElement.querySelector('.swiper-button-prev');
+
+        new Swiper(swiperContainer, {
+          slidesPerView: 1,
+          spaceBetween: 0,
+          loop: true,
+          navigation: {
+            nextEl: nextButton,
+            prevEl: prevButton,
+          },
+        });
+      });
     });
   </script>
 
