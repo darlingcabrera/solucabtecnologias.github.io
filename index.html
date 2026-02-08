@@ -5,16 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solucab Tecnologías - Soporte Técnico y Soluciones</title>
   
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Font Awesome para Iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- Swiper.js CSS para el carrusel -->
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   
-  <!-- Estilos personalizados y configuración de Tailwind -->
   <style>
     /* Configuración de tema para Tailwind */
     tailwind.config = {
@@ -40,51 +36,60 @@
       to { opacity: 1; }
     }
 
-    /* Estilos para los carruseles DENTRO de cada tarjeta de trabajo */
-    .work-item-carousel {
-      position: relative;
+    /* === NUEVOS ESTILOS PARA EL CARRUSEL ÚNICO DE TRABAJOS === */
+    .main-work-swiper {
+      width: 100%;
+      padding-bottom: 50px !important; /* Espacio para los puntos de navegación */
     }
 
-    .work-item-carousel .swiper-button-next,
-    .work-item-carousel .swiper-button-prev {
-      color: #ffffff !important;
-      background-color: rgba(0, 0, 0, 0.4);
+    .work-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      height: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .work-image-container {
+      width: 100%;
+      height: 280px; /* Altura controlada */
+      background-color: #f8f8f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .work-image-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; /* FOTO COMPLETA SIN CORTES */
+    }
+
+    /* Estilo de las flechas del nuevo carrusel */
+    .main-work-swiper .swiper-button-next,
+    .main-work-swiper .swiper-button-prev {
+      color: #25D366;
+      background: white;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      top: 50%;
-      transform: translateY(-50%);
-      opacity: 0; /* Ocultos por defecto */
-      transition: opacity 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
-    /* Mostrar botones al pasar el mouse sobre la tarjeta */
-    .work-item-carousel:hover .swiper-button-next,
-    .work-item-carousel:hover .swiper-button-prev {
-      opacity: 1;
-    }
-
-    .work-item-carousel .swiper-button-next::after,
-    .work-item-carousel .swiper-button-prev::after {
-      font-size: 16px !important;
+    .main-work-swiper .swiper-button-next::after,
+    .main-work-swiper .swiper-button-prev::after {
+      font-size: 18px;
       font-weight: bold;
-    }
-
-    .work-item-carousel .swiper-button-prev {
-      left: 12px;
-    }
-    .work-item-carousel .swiper-button-next {
-      right: 12px;
     }
   </style>
 </head>
 <body class="bg-light text-gray-800 font-sans">
 
-  <!-- ====== ENCABEZADO ====== -->
   <header class="bg-white sticky top-0 z-50 shadow-md">
     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
       <div class="flex items-center gap-4">
-        <!-- Ruta local para el logo -->
         <img src="imagenes/logo.png" alt="Logo Solucab" class="h-16 w-15 rounded-full border-0 border-primary" onerror="this.onerror=null; this.src='https://placehold.co/100x100/1c1c1c/25D366?text=ST';">
         <div>
           <h1 class="text-2xl font-bold text-blue-900">Solucab</h1>
@@ -96,32 +101,26 @@
         <a href="#trabajos" class="text-gray-600 hover:text-primary transition duration-300">Galería</a>
         <a href="#contacto" class="text-gray-600 hover:text-primary transition duration-300">Contacto</a>
       </nav>
-      <!-- Menú para móvil -->
       <button id="mobile-menu-button" class="md:hidden text-black text-2xl">
         <i class="fas fa-bars"></i>
       </button>
     </div>
-    <!-- Menú desplegable para móvil -->
     <div id="mobile-menu" class="hidden md:hidden bg-dark p-4">
-        <a href="#servicios" class="block text-gray-600 hover:text-primary py-2">Servicios</a>
-        <a href="#trabajos" class="block text-gray-600 hover:text-primary py-2">Galería</a>
-        <a href="#contacto" class="block text-gray-600 hover:text-primary py-2">Contacto</a>
+        <a href="#servicios" class="block text-gray-300 hover:text-primary py-2">Servicios</a>
+        <a href="#trabajos" class="block text-gray-300 hover:text-primary py-2">Galería</a>
+        <a href="#contacto" class="block text-gray-300 hover:text-primary py-2">Contacto</a>
     </div>
   </header>
 
   <main>
-    <!-- ====== SECCIÓN HERO CON CARRUSEL DE IMÁGENES ====== -->
     <section id="hero" class="relative h-96 text-white overflow-hidden">
-      <!-- Contenedor de las imágenes del carrusel -->
       <div id="slider-container" class="absolute top-0 left-0 w-full h-full">
          <img src="imagenes/hero-tecnico.jpg" class="slider-image w-full h-full object-cover" alt="Técnico trabajando en una laptop">
          <img src="imagenes/hero-redes.jpg" class="slider-image w-full h-full object-cover hidden" alt="Instalación de redes">
          <img src="imagenes/hero-software.jpg" class="slider-image w-full h-full object-cover hidden" alt="Desarrollo de software">
 	<img src="imagenes/hero-programas.jpg" class="slider-image w-full h-full object-cover hidden" alt="Instalación de Programas">
       </div>
-      <!-- Capa oscura para mejorar legibilidad del texto -->
       <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-60"></div>
-      <!-- Contenido de la sección -->
       <div class="relative z-10 flex flex-col justify-center items-center h-full text-center p-4">
         <h2 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">Soluciones Tecnológicas a tu Alcance</h2>
         <p class="text-lg md:text-xl max-w-2xl drop-shadow-lg">Soporte técnico profesional para empresas y hogares. Calidad y confianza garantizadas.</p>
@@ -129,14 +128,12 @@
       </div>
     </section>
 
-    <!-- ====== SECCIÓN SERVICIOS ====== -->
     <section id="servicios" class="py-16 bg-white">
       <div class="container mx-auto px-6 text-center">
         <h2 class="text-3xl font-bold mb-2">Nuestros Servicios</h2>
         <p class="text-gray-600 mb-12 max-w-2xl mx-auto">Ofrecemos una gama completa de servicios tecnológicos. Haz clic en cada uno para ver más detalles.</p>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Tarjeta de Servicio -->
           <a href="#detalle-impresoras" class="service-card group">
             <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
               <i class="fas fa-print text-4xl text-primary group-hover:text-white"></i>
@@ -144,7 +141,6 @@
             <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Reparación de Impresoras</h3>
             <p class="text-gray-600">Solución a problemas de impresión, atascos y más.</p>
           </a>
-          <!-- Tarjeta de Servicio -->
           <a href="#detalle-computadoras" class="service-card group">
             <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
               <i class="fas fa-laptop text-4xl text-primary group-hover:text-white"></i>
@@ -152,7 +148,6 @@
             <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Mantenimiento de PCs</h3>
             <p class="text-gray-600">Optimización, limpieza y reparación de hardware.</p>
           </a>
-          <!-- Tarjeta de Servicio -->
           <a href="#detalle-redes" class="service-card group">
             <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
               <i class="fas fa-wifi text-4xl text-primary group-hover:text-white"></i>
@@ -160,7 +155,6 @@
             <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Instalación de Redes</h3>
             <p class="text-gray-600">Configuración de redes WiFi y cableadas seguras.</p>
           </a>
-          <!-- Tarjeta de Servicio -->
           <a href="#detalle-camaras" class="service-card group">
             <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
               <i class="fas fa-video text-4xl text-primary group-hover:text-white"></i>
@@ -168,7 +162,6 @@
             <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Cámaras de Seguridad</h3>
             <p class="text-gray-600">Instalación y configuración de sistemas de vigilancia.</p>
           </a>
-          <!-- Tarjeta de Servicio NUEVA -->
           <a href="#detalle-consolas" class="service-card group">
             <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
               <i class="fas fa-gamepad text-4xl text-primary group-hover:text-white"></i>
@@ -176,7 +169,6 @@
             <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Mantenimiento de Consolas</h3>
             <p class="text-gray-600">PS4, PS5, Xbox, Nintendo Switch y más.</p>
           </a>
-          <!-- Tarjeta de Servicio NUEVA -->
           <a href="#detalle-sistemas" class="service-card group">
             <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
               <i class="fas fa-cogs text-4xl text-primary group-hover:text-white"></i>
@@ -188,10 +180,8 @@
       </div>
     </section>
     
-    <!-- ====== SECCIONES DE DETALLE DE SERVICIOS (SUB-PÁGINAS SIMULADAS) ====== -->
     <div class="py-16 bg-light">
       <div class="container mx-auto px-6 space-y-20">
-        <!-- Detalle Impresoras -->
         <section id="detalle-impresoras" class="flex flex-col md:flex-row items-center gap-12">
           <div class="md:w-1/2">
             <h3 class="text-3xl font-bold mb-4">Reparación Profesional de Impresoras</h3>
@@ -203,7 +193,6 @@
           </div>
         </section>
 
-        <!-- Detalle Computadoras -->
         <section id="detalle-computadoras" class="flex flex-col md:flex-row-reverse items-center gap-12">
           <div class="md:w-1/2">
             <h3 class="text-3xl font-bold mb-4">Mantenimiento Preventivo y Correctivo de PCs</h3>
@@ -215,19 +204,17 @@
           </div>
         </section>
         
-        <!-- Detalle Redes -->
         <section id="detalle-redes" class="flex flex-col md:flex-row items-center gap-12">
           <div class="md:w-1/2">
             <h3 class="text-3xl font-bold mb-4">Instalación y Configuración de Redes</h3>
             <p class="text-gray-700 leading-relaxed mb-4">Diseñamos e implementamos soluciones de red para tu hogar o negocio. Configuramos redes WiFi de alta velocidad con cobertura total, redes cableadas para máxima estabilidad y seguridad, y garantizamos que todos tus dispositivos estén conectados de forma segura y eficiente.</p>
-            <a href="#contacto" class="text-secondary font-bold hover:underline">Mejora tu Conexión &rarr;</a>
+            <a href="#contacto" class="text-secondary font-bold hover:underline">Mejora tu Connection &rarr;</a>
           </div>
           <div class="md:w-1/2">
             <img src="imagenes/servicio-redes.jpg" alt="Servidores y equipo de red en un rack" class="rounded-lg shadow-xl w-full h-auto">
           </div>
         </section>
         
-        <!-- Detalle Cámaras -->
         <section id="detalle-camaras" class="flex flex-col md:flex-row-reverse items-center gap-12">
           <div class="md:w-1/2">
             <h3 class="text-3xl font-bold mb-4">Sistemas de Videovigilancia (CCTV)</h3>
@@ -239,7 +226,6 @@
           </div>
         </section>
 
-        <!-- Detalle Consolas NUEVO -->
         <section id="detalle-consolas" class="flex flex-col md:flex-row items-center gap-12">
           <div class="md:w-1/2">
             <h3 class="text-3xl font-bold mb-4">Mantenimiento de Consolas de Videojuegos</h3>
@@ -247,15 +233,14 @@
             <a href="#contacto" class="text-secondary font-bold hover:underline">Repara tu Consola &rarr;</a>
           </div>
           <div class="md:w-1/2">
-            <img src="imagenes/servicio-consolas.jpg" alt="Varias consolas de videojuegos como PlayStation, Xbox y Nintendo Switch" class="rounded-lg shadow-xl w-full h-auto">
+            <img src="imagenes/servicio-consolas.jpg" alt="Varias consolas de videojuegos" class="rounded-lg shadow-xl w-full h-auto">
           </div>
         </section>
 
-        <!-- Detalle Sistemas Operativos NUEVO -->
         <section id="detalle-sistemas" class="flex flex-col md:flex-row-reverse items-center gap-12">
           <div class="md:w-1/2">
             <h3 class="text-3xl font-bold mb-4">Instalación de Sistemas Operativos</h3>
-            <p class="text-gray-700 leading-relaxed mb-4">Instalamos y configuramos desde cero el sistema operativo que necesites. Para computadoras: Windows 10/11, macOS y cualquier distribución de Linux. Para móviles: flasheo y actualización de Android e iOS. Garantizamos una instalación limpia, con todos los drivers y software esencial para que empieces a trabajar o jugar de inmediato.</p>
+            <p class="text-gray-700 leading-relaxed mb-4">Instalamos y configuramos desde cero el sistema operativo que necesites. Para computadoras: Windows 10/11, macOS y cualquier distribución de Linux. Para móviles: flasheo y actualización de Android e iOS. Garantizamos una instalación limpia, con todos los drivers y software esencial.</p>
             <a href="#contacto" class="text-secondary font-bold hover:underline">Actualiza tu Sistema &rarr;</a>
           </div>
           <div class="md:w-1/2">
@@ -265,119 +250,96 @@
       </div>
     </div>
 
-    <!-- ====== SECCIÓN GALERÍA DE TRABAJOS REALIZADOS ====== -->
     <section id="trabajos" class="py-16 bg-white">
-      <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold mb-2">Nuestros Trabajos</h2>
-        <p class="text-gray-600 mb-12 max-w-2xl mx-auto">Un vistazo a la calidad y profesionalismo que entregamos en cada proyecto.</p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          
-          <!-- Trabajo 1 -->
-          <div class="work-item-carousel rounded-lg shadow-lg overflow-hidden">
-            <div class="swiper-container">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="imagenes/galeria-oficina.jpg" alt="Instalación de oficina" class="w-full h-64 object-cover"></div>
-                  </div>
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-40 flex items-end p-4 pointer-events-none">
-              <p class="text-red font-bold text-lg">Instalación de Red en Oficina</p>
-            </div>
-          </div>
-          
-          <!-- Trabajo 2 -->
-          <div class="work-item-carousel rounded-lg shadow-lg overflow-hidden">
-            <div class="swiper-container">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="imagenes/galeria-componente.jpg" alt="Reparación de placa base" class="w-full h-64 object-cover"></div>
-                <div class="swiper-slide"><img src="imagenes/mantenimiento-laptop.jpg" alt="Reparación de placa base" class="w-full h-64 object-cover"></div>
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold mb-2">Nuestros Trabajos</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Un vistazo a la calidad y profesionalismo que entregamos en cada proyecto.</p>
+        </div>
+
+        <div class="swiper main-work-swiper">
+          <div class="swiper-wrapper">
+            
+            <div class="swiper-slide p-2">
+              <div class="work-card">
+                <div class="work-image-container">
+                  <img src="imagenes/galeria-oficina.jpg" alt="Instalación de Red">
+                </div>
+                <div class="p-5 text-center">
+                  <h4 class="font-bold text-lg text-blue-900">Instalación de Red en Oficina</h4>
+                  <p class="text-sm text-gray-600 mt-2">Configuración completa de cableado estructurado y rack.</p>
+                </div>
               </div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-50 flex items-end p-4 pointer-events-none">
-              <p class="text-white font-bold text-lg">Reparación a Nivel Componente</p>
-            </div>
-          </div>
 
-          <!-- Trabajo 3 -->
-          <div class="work-item-carousel rounded-lg shadow-lg overflow-hidden">
-            <div class="swiper-container">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="imagenes/ps4img1.jpg" alt="Cableado estructurado" class="w-full h-64 object-cover"></div>
-                
+            <div class="swiper-slide p-2">
+              <div class="work-card">
+                <div class="work-image-container">
+                  <img src="imagenes/galeria-componente.jpg" alt="Reparación placa base">
+                </div>
+                <div class="p-5 text-center">
+                  <h4 class="font-bold text-lg text-blue-900">Reparación a Nivel Componente</h4>
+                  <p class="text-sm text-gray-600 mt-2">Solución de fallos electrónicos en equipos portátiles.</p>
+                </div>
               </div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-40 flex items-end p-4 pointer-events-none">
-              <p class="text-white font-bold text-lg">Organización de Cableado</p>
-            </div>
-          </div>
 
-          <!-- Trabajo 4 -->
-          <div class="work-item-carousel rounded-lg shadow-lg overflow-hidden">
-            <div class="swiper-container">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="imagenes/galeria-cctv.jpg" alt="Instalación de CCTV" class="w-full h-64 object-cover"></div>
-                
+            <div class="swiper-slide p-2">
+              <div class="work-card">
+                <div class="work-image-container">
+                  <img src="imagenes/ps4img1.jpg" alt="Cableado">
+                </div>
+                <div class="p-5 text-center">
+                  <h4 class="font-bold text-lg text-blue-900">Organización de Cableado</h4>
+                  <p class="text-sm text-gray-600 mt-2">Peinado y etiquetado de cables para mejor mantenimiento.</p>
+                </div>
               </div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-40 flex items-end p-4 pointer-events-none">
-              <p class="text-white font-bold text-lg">Sistema de Videovigilancia</p>
-            </div>
-          </div>
 
-          <!-- Trabajo 5 -->
-          <div class="work-item-carousel rounded-lg shadow-lg overflow-hidden">
-            <div class="swiper-container">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="imagenes/galeria-soporte.jpg" alt="Soporte a múltiples dispositivos" class="w-full h-64 object-cover"></div>
+            <div class="swiper-slide p-2">
+              <div class="work-card">
+                <div class="work-image-container">
+                  <img src="imagenes/galeria-cctv.jpg" alt="CCTV">
+                </div>
+                <div class="p-5 text-center">
+                  <h4 class="font-bold text-lg text-blue-900">Sistemas de Seguridad</h4>
+                  <p class="text-sm text-gray-600 mt-2">Instalación de cámaras HD con visualización móvil.</p>
+                </div>
               </div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-40 flex items-end p-4 pointer-events-none">
-              <p class="text-white font-bold text-lg">Soporte Remoto y Presencial</p>
-            </div>
-          </div>
 
-          <!-- Trabajo 6 -->
-           <div class="work-item-carousel rounded-lg shadow-lg overflow-hidden">
-            <div class="swiper-container">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="imagenes/galeria-software.jpg" alt="Instalación de Software" class="w-full h-64 object-cover"></div>
-                <div class="swiper-slide"><img src="imagenes/falla-os.jpg" alt="Error de OS Windows" class="w-full h-64 object-cover"></div>
-		 <div class="swiper-slide"><img src="imagenes/hero-programas.jpg" alt="Error de OS Windows" class="w-full h-64 object-cover"></div>
+            <div class="swiper-slide p-2">
+              <div class="work-card">
+                <div class="work-image-container">
+                  <img src="imagenes/galeria-software.jpg" alt="Software">
+                </div>
+                <div class="p-5 text-center">
+                  <h4 class="font-bold text-lg text-blue-900">Instalación de Software</h4>
+                  <p class="text-sm text-gray-600 mt-2">Configuración y optimización de sistemas operativos.</p>
+                </div>
               </div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="absolute inset-x-0 bottom-0 bg-black bg-opacity-40 flex items-end p-4 pointer-events-none">
-              <p class="text-white font-bold text-lg">Instalación de Software</p>
-            </div>
-          </div>
 
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
       </div>
     </section>
 
-    <!-- ====== CONTACTO ====== -->
     <section id="contacto" class="bg-dark text-gray-300 py-16">
       <div class="container mx-auto px-6 text-center">
         <h2 class="text-3xl font-bold mb-4 text-black">¿Listo para Empezar?</h2>
         <p class="text-gray-400 mb-8 max-w-2xl mx-auto">Ponte en contacto con nosotros. Estamos listos para ayudarte con cualquier desafío tecnológico.</p>
         <div class="flex flex-wrap justify-center items-center gap-8">
-          <a href="tel:+50497610869" class="bg-gray-300 hover:bg-gray-600 text-black p-4 rounded-lg transition duration-300">
+          <a href="tel:+50497610869" class="bg-gray-800 hover:bg-gray-700 text-white p-4 rounded-lg transition duration-300">
             <p class="text-lg"><i class="fas fa-phone mr-2 text-primary"></i> +504 9761-0869</p>
           </a>
-          <a href="mailto:consultas@solucabtecnologias.com" class="bg-gray-300 hover:bg-gray-600 text-black p-4 rounded-lg transition duration-300">
+          <a href="mailto:consultas@solucabtecnologias.com" class="bg-gray-800 hover:bg-gray-700 text-white p-4 rounded-lg transition duration-300">
             <p class="text-lg"><i class="fas fa-envelope mr-2 text-primary"></i> consultas@solucabtecnologias.com</p>
           </a>
-          <div class="bg-gray-300 text-black p-4 rounded-lg">
+          <div class="bg-gray-800 text-white p-4 rounded-lg">
             <p class="text-lg"><i class="fas fa-map-marker-alt mr-2 text-primary"></i> La Ceiba, Honduras</p>
           </div>
         </div>
@@ -394,17 +356,14 @@
     </section>
   </main>
   
-  <!-- ====== FOOTER ====== -->
   <footer class="bg-black text-gray-500 text-center p-4">
       <p>&copy; <span id="year"></span> Solucab Tecnologías. Todos los derechos reservados.</p>
   </footer>
 
-  <!-- ====== BOTÓN FLOTANTE WHATSAPP ====== -->
-  <a href="https://wa.me/50497610869?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="fixed bottom-5 right-5 z-50 w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition duration-300">
-    <i class="fab fa-whatsapp text-green-600 text-4xl"></i>
+  <a href="https://wa.me/50497610869?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_black" class="fixed bottom-5 right-5 z-50 w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition duration-300">
+    <i class="fab fa-whatsapp text-green-600 text-6xl"></i>
   </a>
   
-  <!-- Swiper.js JS -->
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
   <script>
@@ -417,7 +376,7 @@
         mobileMenu.classList.toggle('hidden');
       });
 
-      // Lógica para el carrusel de imágenes del HERO
+      // Lógica para el carrusel de imágenes del HERO (Mantenida intacta)
       const sliderImages = document.querySelectorAll('.slider-image');
       let currentImageIndex = 0;
 
@@ -425,39 +384,39 @@
         if (sliderImages.length === 0) return;
         sliderImages[currentImageIndex].classList.add('hidden');
         sliderImages[currentImageIndex].classList.remove('fade-in');
-        
         currentImageIndex = (currentImageIndex + 1) % sliderImages.length;
-        
         sliderImages[currentImageIndex].classList.remove('hidden');
         sliderImages[currentImageIndex].classList.add('fade-in');
       }
 
-      setInterval(showNextImage, 5000); // Cambia la imagen cada 5 segundos
+      setInterval(showNextImage, 5000); 
       
-      // Actualizar año en el footer
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // INICIALIZACIÓN DE CARRUSELES DENTRO DE CADA TARJETA DE TRABAJO
-      const workItemCarousels = document.querySelectorAll('.work-item-carousel');
-      
-      workItemCarousels.forEach(carouselElement => {
-        const swiperContainer = carouselElement.querySelector('.swiper-container');
-        const nextButton = carouselElement.querySelector('.swiper-button-next');
-        const prevButton = carouselElement.querySelector('.swiper-button-prev');
-
-        new Swiper(swiperContainer, {
-          slidesPerView: 1,
-          spaceBetween: 0,
-          loop: true,
-          navigation: {
-            nextEl: nextButton,
-            prevEl: prevButton,
-          },
-        });
+      // === INICIALIZACIÓN DEL NUEVO CARRUSEL DE TRABAJOS ===
+      new Swiper(".main-work-swiper", {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        loop: true,
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          640: { slidesPerView: 2, spaceBetween: 20 },
+          1024: { slidesPerView: 3, spaceBetween: 30 },
+        },
       });
     });
   </script>
 
 </body>
 </html>
-
