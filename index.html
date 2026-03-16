@@ -3,7 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solucab Tecnologías - Soporte Técnico y Soluciones</title>
+  <title>Solucab Tecnologías | Reparación de Computadoras, Impresoras y Soporte Técnico en La Ceiba</title>
+
+<meta name="description" content="Solucab Tecnologías ofrece reparación de computadoras, impresoras, celulares, instalación de redes, cámaras de seguridad y soporte técnico profesional en La Ceiba, Honduras.">
+
+<meta name="keywords" content="reparación de computadoras La Ceiba, soporte técnico Honduras, reparación de impresoras, mantenimiento de laptops, instalación de redes, cámaras de seguridad La Ceiba, servicio técnico computadoras Honduras">
+
+<meta name="author" content="Solucab Tecnologías">
+
+<meta name="robots" content="index, follow">
+
+
+<meta property="og:title" content="Solucab Tecnologías | Soporte Técnico Profesional">
+<meta property="og:description" content="Reparación de computadoras, impresoras, celulares, instalación de redes y cámaras de seguridad en La Ceiba, Honduras.">
+<meta property="og:image" content="https://solucabtecnologias.com/imagenes/logo.png">
+<meta property="og:url" content="https://solucabtecnologias.com">
+<meta property="og:type" content="website">
+
   
   <script src="https://cdn.tailwindcss.com"></script>
   
@@ -115,6 +131,28 @@
       font-size: 18px;
       font-weight: bold;
     }
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "LocalBusiness",
+ "name": "Solucab Tecnologías",
+ "image": "https://solucabtecnologias.com/imagenes/logo.png",
+ "url": "https://solucabtecnologias.com",
+ "telephone": "+50497610869",
+ "address": {
+   "@type": "PostalAddress",
+   "addressLocality": "La Ceiba",
+   "addressCountry": "HN"
+ },
+ "sameAs": [
+   "https://www.facebook.com/solucabtecnologias",
+   "https://www.instagram.com/solucab_tecnologias/"
+ ],
+ "description": "Servicio técnico profesional en reparación de computadoras, impresoras, celulares, redes y cámaras de seguridad en Honduras."
+}
+</script>
+
   </style>
 </head>
 <body class="bg-light text-gray-800 font-sans">
@@ -154,7 +192,7 @@
       </div>
       <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-60"></div>
       <div class="relative z-10 flex flex-col justify-center items-center h-full text-center p-4">
-        <h2 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">Soluciones Tecnológicas a tu Alcance</h2>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">Soluciones Tecnológicas a tu Alcance</h1>
         <p class="text-lg md:text-xl max-w-2xl drop-shadow-lg">Soporte técnico profesional para empresas y hogares. Calidad y confianza garantizadas.</p>
         <a href="#contacto" class="mt-8 bg-primary hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 text-lg">Contáctanos ahora</a>
       </div>
@@ -490,9 +528,11 @@
       <p>&copy; <span id="year"></span> Solucab Tecnologías. Todos los derechos reservados.</p>
   </footer>
 
-  <a href="https://wa.me/50497610869?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="fixed bottom-5 right-5 z-50 w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition duration-300">
-    <i class="fab fa-whatsapp text-green-600 text-6xl"></i>
-  </a>
+ <a href="#" onclick="cotizarServicio('Consulta General')"
+target="_blank"
+class="fixed bottom-5 right-5 z-50 w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition duration-300">
+<i class="fab fa-whatsapp text-green-600 text-6xl"></i>
+</a>
   
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
@@ -558,7 +598,29 @@
         },
       });
     });
+
+function cotizarServicio(servicio){
+
+var numero = "50497610869";
+
+var mensaje =
+"Hola, quiero cotizar un servicio.%0A%0A" +
+"*Servicio:* " + servicio + "%0A%0A" +
+"Por favor indíqueme:%0A" +
+"• Marca del equipo:%0A" +
+"• Modelo:%0A" +
+"• Problema que presenta:%0A" +
+"• Ubicación:%0A";
+
+var url = "https://wa.me/" + numero + "?text=" + mensaje;
+
+window.open(url, "_blank");
+
+}
   </script>
+
+
+
 
 </body>
 </html>
