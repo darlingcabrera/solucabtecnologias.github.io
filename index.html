@@ -58,13 +58,44 @@
       background-color: #f8f8f8;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: center;	
+      overflow: hidden;
+      position: relative; /* Necesario para el carrusel interno */
     }
+
+
+
+
+
+.nested-swiper .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nested-swiper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* Mantiene la proporción sin cortar la imagen */
+  margin: auto;        /* Refuerza el centrado */
+}
+
+
 
     .work-image-container img {
       max-width: 100%;
       max-height: 100%;
       object-fit: contain; /* FOTO COMPLETA SIN CORTES */
+    }
+
+    /* Estilos específicos para el carrusel anidado (interno) */
+    .nested-swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .nested-pagination .swiper-pagination-bullet {
+      background: #25D366;
     }
 
     /* Estilo de las flechas del nuevo carrusel */
@@ -76,6 +107,7 @@
       height: 40px;
       border-radius: 50%;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 20;
     }
 
     .main-work-swiper .swiper-button-next::after,
@@ -118,7 +150,7 @@
          <img src="imagenes/hero-tecnico.jpg" class="slider-image w-full h-full object-cover" alt="Técnico trabajando en una laptop">
          <img src="imagenes/hero-redes.jpg" class="slider-image w-full h-full object-cover hidden" alt="Instalación de redes">
          <img src="imagenes/hero-software.jpg" class="slider-image w-full h-full object-cover hidden" alt="Desarrollo de software">
-	<img src="imagenes/hero-programas.jpg" class="slider-image w-full h-full object-cover hidden" alt="Instalación de Programas">
+         <img src="imagenes/hero-programas.jpg" class="slider-image w-full h-full object-cover hidden" alt="Instalación de Programas">
       </div>
       <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-60"></div>
       <div class="relative z-10 flex flex-col justify-center items-center h-full text-center p-4">
@@ -133,7 +165,7 @@
         <h2 class="text-3xl font-bold mb-2">Nuestros Servicios</h2>
         <p class="text-gray-600 mb-12 max-w-2xl mx-auto">Ofrecemos una gama completa de servicios tecnológicos. Haz clic en cada uno para ver más detalles.</p>
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <a href="#detalle-impresoras" class="service-card group">
             <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
               <i class="fas fa-print text-4xl text-primary group-hover:text-white"></i>
@@ -162,6 +194,7 @@
             <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Cámaras de Seguridad</h3>
             <p class="text-gray-600">Instalación y configuración de sistemas de vigilancia.</p>
           </a>
+
           <a href="#detalle-consolas" class="service-card group">
             <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
               <i class="fas fa-gamepad text-4xl text-primary group-hover:text-white"></i>
@@ -169,12 +202,29 @@
             <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Mantenimiento de Consolas</h3>
             <p class="text-gray-600">PS4, PS5, Xbox, Nintendo Switch y más.</p>
           </a>
+
           <a href="#detalle-sistemas" class="service-card group">
             <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
               <i class="fas fa-cogs text-4xl text-primary group-hover:text-white"></i>
             </div>
             <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Sistemas Operativos</h3>
             <p class="text-gray-600">Windows, macOS, Linux, Android e iOS.</p>
+          </a>
+
+          <a href="#detalle-soporte" class="service-card group">
+             <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
+               <i class="fas fa-headset text-4xl text-primary group-hover:text-white"></i>
+             </div>
+             <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Soporte Remoto</h3>
+             <p class="text-gray-600">Asistencia técnica inmediata sin importar dónde te encuentres.</p>
+          </a>
+
+          <a href="#detalle-celulares" class="service-card group">
+             <div class="bg-gray-100 p-6 rounded-lg group-hover:bg-primary transition duration-300">
+               <i class="fas fa-mobile-alt text-4xl text-primary group-hover:text-white"></i>
+             </div>
+             <h3 class="text-xl font-bold mt-4 mb-2 group-hover:text-primary transition duration-300">Celulares</h3>
+             <p class="text-gray-600">Reparación de hardware y software para móviles.</p>
           </a>
         </div>
       </div>
@@ -189,62 +239,84 @@
             <a href="#contacto" class="text-secondary font-bold hover:underline">Solicitar Diagnóstico &rarr;</a>
           </div>
           <div class="md:w-1/2">
-            <img src="imagenes/servicio-impresoras.jpg" alt="Técnico reparando una impresora" class="rounded-lg shadow-xl w-full h-auto">
+            <img src="imagenes/impresora/servicio-impresoras.jpg" alt="Técnico reparando una impresora" class="rounded-lg shadow-xl w-full h-auto">
           </div>
         </section>
 
         <section id="detalle-computadoras" class="flex flex-col md:flex-row-reverse items-center gap-12">
           <div class="md:w-1/2">
             <h3 class="text-3xl font-bold mb-4">Mantenimiento Preventivo y Correctivo de PCs</h3>
-            <p class="text-gray-700 leading-relaxed mb-4">Mantén tu equipo en óptimas condiciones. Ofrecemos limpieza interna de componentes para evitar sobrecalentamiento, optimización de sistema operativo para mayor velocidad, eliminación de virus y malware, y reparación o cambio de componentes como discos duros, memoria RAM y fuentes de poder.</p>
+            <p class="text-gray-700 leading-relaxed mb-4">Mantén tu equipo en óptimas condiciones. Ofrecemos limpieza interna de componentes para evitar sobrecalentamiento, optimización de sistema operativo para mayor velocidad, eliminación de virus y malware, y reparación o cambio 	de componentes como discos duros, memoria RAM y fuentes de poder.</p>
             <a href="#contacto" class="text-secondary font-bold hover:underline">Optimiza tu PC &rarr;</a>
           </div>
           <div class="md:w-1/2">
-            <img src="imagenes/servicio-computadoras.jpg" alt="Interior de una computadora con componentes" class="rounded-lg shadow-xl w-full h-auto">
+            <img src="imagenes/pc/servicio-computadoras.jpg" alt="Interior de una computadora con componentes" class="rounded-lg shadow-xl w-full h-auto">
           </div>
         </section>
         
         <section id="detalle-redes" class="flex flex-col md:flex-row items-center gap-12">
           <div class="md:w-1/2">
             <h3 class="text-3xl font-bold mb-4">Instalación y Configuración de Redes</h3>
-            <p class="text-gray-700 leading-relaxed mb-4">Diseñamos e implementamos soluciones de red para tu hogar o negocio. Configuramos redes WiFi de alta velocidad con cobertura total, redes cableadas para máxima estabilidad y seguridad, y garantizamos que todos tus dispositivos estén conectados de forma segura y eficiente.</p>
+            <p class="text-gray-700 leading-relaxed mb-4">Diseñamos e implementamos soluciones de red para tu hogar o negocio. Configuramos redes WiFi de alta velocidad con cobertura total, redes cableadas para máxima estabilidad y seguridad, y garantizamos que todos tus dispositivos 	estén conectados de forma segura y eficiente.</p>
             <a href="#contacto" class="text-secondary font-bold hover:underline">Mejora tu Connection &rarr;</a>
           </div>
           <div class="md:w-1/2">
-            <img src="imagenes/servicio-redes.jpg" alt="Servidores y equipo de red en un rack" class="rounded-lg shadow-xl w-full h-auto">
+            <img src="imagenes/redes/servicio-redes.jpg" alt="Servidores y equipo de red en un rack" class="rounded-lg shadow-xl w-full h-auto">
           </div>
         </section>
         
         <section id="detalle-camaras" class="flex flex-col md:flex-row-reverse items-center gap-12">
           <div class="md:w-1/2">
             <h3 class="text-3xl font-bold mb-4">Sistemas de Videovigilancia (CCTV)</h3>
-            <p class="text-gray-700 leading-relaxed mb-4">Protege lo que más importa con nuestros sistemas de cámaras de seguridad. Realizamos la instalación estratégica de cámaras HD y 4K, configuramos el sistema de grabación (DVR/NVR) y te damos acceso para que puedas monitorear tu propiedad desde tu celular en tiempo real, desde cualquier lugar del mundo.</p>
+            <p class="text-gray-700 leading-relaxed mb-4">Protege lo que más importa con nuestros sistemas de cámaras de seguridad. Realizamos la instalación estratégica de cámaras HD y 4K, configuramos el sistema de grabación (DVR/NVR) y te damos acceso para que puedas monitorear tu 	propiedad desde tu celular en tiempo real, desde cualquier lugar del mundo.</p>
             <a href="#contacto" class="text-secondary font-bold hover:underline">Cotizar Sistema de Seguridad &rarr;</a>
           </div>
           <div class="md:w-1/2">
-            <img src="imagenes/servicio-camaras.jpg" alt="Cámara de seguridad instalada en una pared exterior" class="rounded-lg shadow-xl w-full h-auto">
+            <img src="imagenes/camaras/servicio-camaras.jpg" alt="Cámara de seguridad instalada en una pared exterior" class="rounded-lg shadow-xl w-full h-auto">
           </div>
         </section>
 
         <section id="detalle-consolas" class="flex flex-col md:flex-row items-center gap-12">
           <div class="md:w-1/2">
             <h3 class="text-3xl font-bold mb-4">Mantenimiento de Consolas de Videojuegos</h3>
-            <p class="text-gray-700 leading-relaxed mb-4">¡Que la diversión no se detenga! Damos servicio a tus consolas favoritas: PlayStation (PS4, PS5), Xbox (One, Series X/S) y Nintendo Switch. Realizamos limpieza interna para evitar sobrecalentamiento, reparación de puertos HDMI, cambio de pasta térmica y solución a fallos de software o lectura de discos.</p>
+            <p class="text-gray-700 leading-relaxed mb-4">¡Que la diversión no se detenga! Damos servicio a tus consolas favoritas: PlayStation (PS4, PS5), Xbox (One, Series X/S) y Nintendo Switch. Realizamos limpieza interna para evitar sobrecalentamiento, reparación de puertos 	HDMI, cambio de pasta térmica y solución a fallos de software o lectura de discos.</p>
             <a href="#contacto" class="text-secondary font-bold hover:underline">Repara tu Consola &rarr;</a>
           </div>
           <div class="md:w-1/2">
-            <img src="imagenes/servicio-consolas.jpg" alt="Varias consolas de videojuegos" class="rounded-lg shadow-xl w-full h-auto">
+            <img src="imagenes/consolas/servicio-consolas.jpg" alt="Varias consolas de videojuegos" class="rounded-lg shadow-xl w-full h-auto">
           </div>
         </section>
 
         <section id="detalle-sistemas" class="flex flex-col md:flex-row-reverse items-center gap-12">
           <div class="md:w-1/2">
             <h3 class="text-3xl font-bold mb-4">Instalación de Sistemas Operativos</h3>
-            <p class="text-gray-700 leading-relaxed mb-4">Instalamos y configuramos desde cero el sistema operativo que necesites. Para computadoras: Windows 10/11, macOS y cualquier distribución de Linux. Para móviles: flasheo y actualización de Android e iOS. Garantizamos una instalación limpia, con todos los drivers y software esencial.</p>
+            <p class="text-gray-700 leading-relaxed mb-4">Instalamos y configuramos desde cero el sistema operativo que necesites. Para computadoras: Windows 10/11, macOS y cualquier distribución de Linux. Para móviles: flasheo y actualización de Android e iOS. Garantizamos una 		instalación limpia, con todos los drivers y software esencial.</p>
             <a href="#contacto" class="text-secondary font-bold hover:underline">Actualiza tu Sistema &rarr;</a>
           </div>
           <div class="md:w-1/2">
-            <img src="imagenes/servicio-sistemas.jpg" alt="Logos de Windows, macOS, Linux, Android e iOS" class="rounded-lg shadow-xl w-full h-auto">
+            <img src="imagenes/sistemas/servicio-sistemas.jpg" alt="Logos de Windows, macOS, Linux, Android e iOS" class="rounded-lg shadow-xl w-full h-auto">
+          </div>
+        </section>
+
+        <section id="detalle-soporte" class="flex flex-col md:flex-row items-center gap-12">
+          <div class="md:w-1/2">
+            <h3 class="text-3xl font-bold mb-4">Soporte Técnico Remoto</h3>
+            <p class="text-gray-700 leading-relaxed mb-4">Asistencia inmediata sin visitas presenciales. Conectamos de forma segura a tu equipo para solucionar problemas de software, virus, configuraciones y optimización en tiempo real. Ideal para empresas y urgencias.</p>
+            <a href="#contacto" class="text-secondary font-bold hover:underline">Solicitar Soporte &rarr;</a>
+          </div>
+          <div class="md:w-1/2">
+            <img src="imagenes/servicio-remoto.jpg" alt="Soporte Remoto" class="rounded-lg shadow-xl w-full h-auto" onerror="this.src='https://placehold.co/600x400?text=Soporte+Remoto';">
+          </div>
+        </section>
+
+        <section id="detalle-celulares" class="flex flex-col md:flex-row-reverse items-center gap-12">
+          <div class="md:w-1/2">
+            <h3 class="text-3xl font-bold mb-4">Reparación y Liberación de Celulares</h3>
+            <p class="text-gray-700 leading-relaxed mb-4">Servicio técnico especializado en smartphones. Realizamos cambio de pantallas, baterías, puertos de carga. También ofrecemos servicios de software, flasheo y liberación de bandas para todas las marcas.</p>
+            <a href="#contacto" class="text-secondary font-bold hover:underline">Cotizar Reparación &rarr;</a>
+          </div>
+          <div class="md:w-1/2">
+            <img src="imagenes/movil/servicio-celulares.jpg" alt="Reparación de Celulares" class="w-full h-auto" onerror="this.src='https://placehold.co/600x400?text=Reparacion+Celulares';">
           </div>
         </section>
       </div>
@@ -257,13 +329,20 @@
             <p class="text-gray-600 max-w-2xl mx-auto">Un vistazo a la calidad y profesionalismo que entregamos en cada proyecto.</p>
         </div>
 
-        <div class="swiper main-work-swiper">
-          <div class="swiper-wrapper">
+
+        <div class="swiper main-work-swiper">  
+	      <div class="swiper-wrapper">  
             
             <div class="swiper-slide p-2">
               <div class="work-card">
                 <div class="work-image-container">
-                  <img src="imagenes/galeria-oficina.jpg" alt="Instalación de Red">
+                  <div class="swiper nested-swiper">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide"><img src="imagenes/redes/galeria-oficina.jpg" alt="Instalación de Red 1"></div>
+                      
+                    </div>
+                    <div class="swiper-pagination nested-pagination"></div>
+                  </div>
                 </div>
                 <div class="p-5 text-center">
                   <h4 class="font-bold text-lg text-blue-900">Instalación de Red en Oficina</h4>
@@ -275,7 +354,15 @@
             <div class="swiper-slide p-2">
               <div class="work-card">
                 <div class="work-image-container">
-                  <img src="imagenes/galeria-componente.jpg" alt="Reparación placa base">
+                  <div class="swiper nested-swiper">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide"><img src="imagenes/pc/galeria-componente.jpg" alt="Reparación 1"></div>
+                      <div class="swiper-slide"><img src="imagenes/pc/pant_q.jpg" alt="Reparación 2"></div>
+                      <div class="swiper-slide"><img src="imagenes/pc/pan_so.jpg" alt="Reparación 3"></div>
+			<div class="swiper-slide"><img src="imagenes/pc/mantenimiento-laptop.jpg" alt="mantenimiento"></div>
+                    </div>
+                    <div class="swiper-pagination nested-pagination"></div>
+                  </div>
                 </div>
                 <div class="p-5 text-center">
                   <h4 class="font-bold text-lg text-blue-900">Reparación a Nivel Componente</h4>
@@ -287,20 +374,35 @@
             <div class="swiper-slide p-2">
               <div class="work-card">
                 <div class="work-image-container">
-                  <img src="imagenes/ps4img1.jpg" alt="Consola">
+                  <div class="swiper nested-swiper">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide"><img src="imagenes/consolas/ps4img1.jpg" alt="Consolas 1"></div>
+                      <div class="swiper-slide"><img src="imagenes/consolas/ps4img2.jpg" alt="Consolas 2"></div>
+                      
+                    </div>
+                    <div class="swiper-pagination nested-pagination"></div>
+                  </div>
                 </div>
                 <div class="p-5 text-center">
-                  <h4 class="font-bold text-lg text-blue-900">Mantenimiento de consola</h4>
-                  <p class="text-sm text-gray-600 mt-2">Limpieza profecional para tu consola favorita</p>
+                  <h4 class="font-bold text-lg text-blue-900">Mantenimiento de consolas</h4>
+                  <p class="text-sm text-gray-600 mt-2">Limpieza minuciosa de consola PS.</p>
                 </div>
               </div>
             </div>
 
+
             <div class="swiper-slide p-2">
               <div class="work-card">
                 <div class="work-image-container">
-                  <img src="imagenes/galeria-cctv.jpg" alt="CCTV">
-                </div>
+                    <div class="swiper nested-swiper">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide"><img src="imagenes/camaras/galeria-cctv.jpg" alt="CCTV 1"></div>
+                          <div class="swiper-slide"><img src="imagenes/camaras/Tipos_camaras.jpg" alt="CCTV 2"></div>
+                          
+                        </div>
+                        <div class="swiper-pagination nested-pagination"></div>
+                    </div>
+		        </div>
                 <div class="p-5 text-center">
                   <h4 class="font-bold text-lg text-blue-900">Sistemas de Seguridad</h4>
                   <p class="text-sm text-gray-600 mt-2">Instalación de cámaras HD con visualización móvil.</p>
@@ -308,14 +410,42 @@
               </div>
             </div>
 
+
+
             <div class="swiper-slide p-2">
               <div class="work-card">
                 <div class="work-image-container">
-                  <img src="imagenes/galeria-software.jpg" alt="Software">
+                    <div class="swiper nested-swiper">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide"><img src="imagenes/sistemas/galeria-software.jpg" alt="Software 1"></div>
+                          <div class="swiper-slide"><img src="imagenes/sistemas/falla-os.jpg" alt="Software 2"></div>
+                          <
+                        </div>
+                        <div class="swiper-pagination nested-pagination"></div>
+                    </div>
                 </div>
                 <div class="p-5 text-center">
                   <h4 class="font-bold text-lg text-blue-900">Instalación de Software</h4>
                   <p class="text-sm text-gray-600 mt-2">Configuración y optimización de sistemas operativos.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide p-2">
+              <div class="work-card">
+                <div class="work-image-container">
+                    <div class="swiper nested-swiper">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide"><img src="imagenes/movil/galeria-celular.jpg" alt="Móviles 1"></div>
+                          <div class="swiper-slide"><img src="imagenes/movil/doble-pant.jpg" alt="Móviles 2"></div>
+                          <div class="swiper-slide"><img src="imagenes/movil/on.jpg" alt="Móviles 3"></div>
+                        </div>
+                        <div class="swiper-pagination nested-pagination"></div>
+                    </div>
+                </div>
+                <div class="p-5 text-center">
+                  <h4 class="font-bold text-lg text-blue-900">Reparación de Móviles</h4>
+                  <p class="text-sm text-gray-600 mt-2">Cambio de display y recuperación de dispositivos.</p>
                 </div>
               </div>
             </div>
@@ -360,7 +490,7 @@
       <p>&copy; <span id="year"></span> Solucab Tecnologías. Todos los derechos reservados.</p>
   </footer>
 
-  <a href="https://wa.me/50497610869?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_black" class="fixed bottom-5 right-5 z-50 w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition duration-300">
+  <a href="https://wa.me/50497610869?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="fixed bottom-5 right-5 z-50 w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition duration-300">
     <i class="fab fa-whatsapp text-green-600 text-6xl"></i>
   </a>
   
@@ -376,7 +506,7 @@
         mobileMenu.classList.toggle('hidden');
       });
 
-      // Lógica para el carrusel de imágenes del HERO (Mantenida intacta)
+      // Lógica para el carrusel de imágenes del HERO
       const sliderImages = document.querySelectorAll('.slider-image');
       let currentImageIndex = 0;
 
@@ -393,13 +523,13 @@
       
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // === INICIALIZACIÓN DEL NUEVO CARRUSEL DE TRABAJOS ===
-      new Swiper(".main-work-swiper", {
+      // === INICIALIZACIÓN DEL CARRUSEL PRINCIPAL DE TRABAJOS ===
+      const mainSwiper = new Swiper(".main-work-swiper", {
         slidesPerView: 1,
         spaceBetween: 10,
         loop: true,
         autoplay: {
-          delay: 3500,
+          delay: 4500, // Un poco más lento para dar tiempo a ver fotos internas
           disableOnInteraction: false,
         },
         pagination: {
@@ -413,6 +543,18 @@
         breakpoints: {
           640: { slidesPerView: 2, spaceBetween: 20 },
           1024: { slidesPerView: 3, spaceBetween: 30 },
+        },
+      });
+
+      // === INICIALIZACIÓN DE LOS CARRUSELES INTERNOS (NESTED) ===
+      const nestedSwipers = new Swiper(".nested-swiper", {
+        nested: true, // CLAVE: Permite que funcione dentro de otro Swiper
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        pagination: {
+          el: ".nested-pagination",
+          clickable: true,
         },
       });
     });
